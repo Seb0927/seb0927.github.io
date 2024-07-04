@@ -38,6 +38,9 @@ export default {
       fontFamily: {
         'sans': ['"Inter"', ...defaultTheme.fontFamily.sans],
       },
+      borderRadius: {
+        '4xl': '2rem', 
+      },
     },
   },
   plugins: [],
