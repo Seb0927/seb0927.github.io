@@ -41,6 +41,9 @@ export default {
       borderRadius: {
         '4xl': '2rem', 
       },
+      maxHeight: {
+        '88': '22rem',
+      }
     },
   },
   plugins: [],
