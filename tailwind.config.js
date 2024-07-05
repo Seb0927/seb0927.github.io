@@ -41,7 +41,16 @@ export default {
       borderRadius: {
         '4xl': '2rem', 
       },
+      height: {
+       '88': '22rem',
+      },
+      width: {
+        '88': '22rem',
+      },
       maxHeight: {
+        '88': '22rem',
+      },
+      maxWidth: {
         '88': '22rem',
       }
     },
