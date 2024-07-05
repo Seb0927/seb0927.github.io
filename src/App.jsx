@@ -1,7 +1,10 @@
+import { Background } from './components/Index';
+import { Presentation } from './components/Index';
+
 export default function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hola mundo
-    </h1>
+    <Background>
+      <Presentation />
+    </Background>
   )
 }
