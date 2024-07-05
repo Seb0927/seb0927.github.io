@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Header from './Header.jsx';
 import ProgrammingIcons from "./ProgrammingIcons.jsx";
+import Blob from "./Blob.jsx";
 import ChevronLeft from '../../assets/vectors/chevron-left.svg?react';
 import ChevronRight from '../../assets/vectors/chevron-right.svg?react';
 
@@ -10,6 +11,14 @@ const Background = ({ children }) => {
 
   return (
     <motion.div className="bg-green-lightest h-screen w-screen overflow-hidden">
+      <div className="fixed overflow-hidden -bottom-44 -left-44">
+        <Blob></Blob>
+      </div>
+
+      <div className="fixed overflow-hidden -top-44 -right-44">
+        <Blob></Blob>
+      </div>
+      
       {/* Header */}
       <div className="text-black w-full pt-12 pb-6 items flex justify-center h-1/6">
         <Header sections={['Home', 'Projects', 'Experience', 'Contact']}></Header>
