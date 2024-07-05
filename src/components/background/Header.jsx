@@ -26,16 +26,14 @@ function Header(props) {
   console.log(props.sections.length)
 
   return (
-    <>
-      <div>
-        <div className={`grid grid-cols-${props.sections.length} gap-2`}>
-          {sections}
-        </div>
-        <div className={`grid grid-cols-${props.sections.length}`}>
-          {backgrounds}
-        </div>
+    <div>
+      <div className={`grid grid-cols-${props.sections.length} gap-2`}>
+        {sections}
       </div>
-    </>
+      <div className={`grid grid-cols-${props.sections.length}`}>
+        {backgrounds}
+      </div>
+    </div>
   )
 }
 
