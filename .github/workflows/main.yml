@@ -10,7 +10,7 @@ on:
     branches: [ main, develop, ci/cd ]
 
 jobs:
-  test:
+  Testing:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
