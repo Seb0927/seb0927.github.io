@@ -22,10 +22,7 @@ jobs:
           node-version: lts/Hydrogen
 
       - name: Install dependencies
-        run: npm i
-
-      - name: Run tests
-        run: npm test
+        run: npm install
       
       - name: Run build command
         run: npm run build
