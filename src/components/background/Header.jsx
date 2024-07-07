@@ -1,5 +1,12 @@
 function Header(props) {
-  console.log(props.sections)
+  const gridColumnsVariants = {
+    1: 'grid-cols-1',
+    2: 'grid-cols-2',
+    3: 'grid-cols-3',
+    4: 'grid-cols-4',
+    5: 'grid-cols-5',
+    6: 'grid-cols-6',
+  }
 
   const sections = props.sections.map((section) => {
     return (
@@ -12,13 +19,13 @@ function Header(props) {
   const backgrounds = props.sections.map((section) => {
     if (section == 'Home'){
       return (
-        <div className="h-1.5 bg-green-dark">
+        <div key={section} className="h-1.5 bg-green-dark">
         </div>
       )
     }
     
     return (
-      <div className="h-1.5 bg-green-light">
+      <div key={section}className="h-1.5 bg-green-light">
       </div>
     )
   })
@@ -27,10 +34,10 @@ function Header(props) {
 
   return (
     <div>
-      <div className={`grid grid-cols-${props.sections.length} gap-2`}>
+      <div className={`grid ${gridColumnsVariants[props.sections.length]} gap-2`}>
         {sections}
       </div>
-      <div className={`grid grid-cols-${props.sections.length}`}>
+      <div className={`grid ${gridColumnsVariants[props.sections.length]}`}>
         {backgrounds}
       </div>
     </div>
