@@ -12,9 +12,9 @@ const Background = ({ children }) => {
   return (
     <motion.div className="overflow-auto bg-green-lightest md:h-screen md:w-screen md:overflow-hidden">
       {/* Blob */}
-      <div className="fixed overflow-hidden z-10 -bottom-28 -left-28 md:-bottom-44 md:-left-44">
+      <motion.div className="fixed overflow-hidden z-10 -bottom-28 -left-28 md:-bottom-44 md:-left-44">
         <Blob></Blob>
-      </div>
+      </motion.div>
 
       {/* Blob */}
       <div className="fixed overflow-hidden z-10 -top-28 -right-28 md:-top-44 md:-right-44">
