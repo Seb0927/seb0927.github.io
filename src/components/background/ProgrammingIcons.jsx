@@ -5,9 +5,9 @@ import React2 from '../../assets/vectors/react.svg?react';
 const ProgrammingIcons = () => {
   return (
       <div className="grid grid-cols-3 place-items-center">
-        <Java className="fill-current text-green-dark h-14 w-14"/>
-        <Python className="fill-current text-green-dark h-14 w-14"/>
-        <React2 className="fill-current text-green-dark h-14 w-14"/>
+        <Java className="fill-current text-green-dark h-10 w-10 md:h-14 md:w-14"/>
+        <Python className="fill-current text-green-dark h-10 w-10 md:h-14 md:w-14"/>
+        <React2 className="fill-current text-green-dark h-10 w-10 md:h-14 md:w-14"/>
       </div>
   )
 }

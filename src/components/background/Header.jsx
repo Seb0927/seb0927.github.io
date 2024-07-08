@@ -1,3 +1,5 @@
+import useWindowDimensions from '../hooks/useWindowDimensions'
+
 function Header(props) {
   const gridColumnsVariants = {
     1: 'grid-cols-1',
@@ -8,7 +10,13 @@ function Header(props) {
     6: 'grid-cols-6',
   }
 
-  const sections = props.sections.map((section) => {
+  const { width, height } = useWindowDimensions();
+
+  const isSmallScreen =  width < 768;
+
+  const sectionsToRender = isSmallScreen ? props.sections.slice(0, 2) : props.sections;
+
+  const sections = sectionsToRender.map((section) => {
     return (
       <div key={section} className="flex justify-center items-center text-lg p-2">
         {section}
@@ -16,7 +24,8 @@ function Header(props) {
     )
   })
 
-  const backgrounds = props.sections.map((section) => {
+  const backgrounds = sectionsToRender.map((section) => {
+    console.log("Hola")
     if (section == 'Home'){
       return (
         <div key={section} className="h-1.5 bg-green-dark">
@@ -30,14 +39,12 @@ function Header(props) {
     )
   })
 
-  console.log(props.sections.length)
-
   return (
     <div>
-      <div className={`grid ${gridColumnsVariants[props.sections.length]} gap-2`}>
+      <div className={`grid gap-2 ${gridColumnsVariants[sectionsToRender.length]}`}>
         {sections}
       </div>
-      <div className={`grid ${gridColumnsVariants[props.sections.length]}`}>
+      <div className={`grid ${gridColumnsVariants[sectionsToRender.length]}`}>
         {backgrounds}
       </div>
     </div>
