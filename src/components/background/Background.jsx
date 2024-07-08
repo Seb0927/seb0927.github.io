@@ -10,12 +10,14 @@ const Background = ({ children }) => {
   console.log(children)
 
   return (
-    <motion.div className="bg-green-lightest h-screen w-screen overflow-hidden">
-      <div className="fixed overflow-hidden -bottom-44 -left-44">
+    <motion.div className="overflow-auto bg-green-lightest md:h-screen md:w-screen md:overflow-hidden">
+      {/* Blob */}
+      <div className="fixed overflow-hidden z-10 -bottom-28 -left-28 md:-bottom-44 md:-left-44">
         <Blob></Blob>
       </div>
 
-      <div className="fixed overflow-hidden -top-44 -right-44">
+      {/* Blob */}
+      <div className="fixed overflow-hidden z-10 -top-28 -right-28 md:-top-44 md:-right-44">
         <Blob></Blob>
       </div>
       
@@ -25,21 +27,23 @@ const Background = ({ children }) => {
       </div>
 
       {/* Content area */}
-      <div className="px-20 grid grid-cols-13 gap-2 items-center place-content-center h-4/6">
+      <div className="px-16 py-4 items-center place-content-center md:px-20 md:h-4/6 md:grid md:grid-cols-13 md:gap-2">
         {/* Arrow */}
-        <div className="flex justify-start">
+        <div className="hidden md:flex md:justify-start">
           <ChevronLeft className="fill-current text-green-dark h-2/6 w-2/6"/>
         </div>
+
         {/* Content */}
         {children}
+
         {/* Arrow */}
-        <div className="flex justify-end">
+        <div className="hidden md:flex md:justify-end">
           <ChevronRight className="fill-current text-green-dark h-2/6 w-2/6"/>
         </div>
       </div>
 
       {/* Programming Icons */}
-      <div className="pt-6 pb-12 h-1/6 px-36">
+      <div className="px-24 pb-12 h-1/6 md:px-36">
         <ProgrammingIcons></ProgrammingIcons>
       </div>
 

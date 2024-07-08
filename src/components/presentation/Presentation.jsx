@@ -4,7 +4,7 @@ function Presentation() {
   return (
     <>
       {/* Presentation */}
-      <div className="col-span-5">
+      <div className="md:col-span-5">
         <h1 className="mb-10 text-5xl font-semibold">I’m Sebastian Idrobo</h1>
         <p className="text-lg">I am a passionate Systems Engineer with a mindset geared towards challenges and endeavors, always seeking out new opportunities to push the boundaries of what is possible and deliver impactful results. My career is orientated to:</p>
         <br></br>
@@ -17,7 +17,7 @@ function Presentation() {
       {/* Space */}
       <div></div>
       {/* Image */}
-      <div className="col-span-5 flex justify-center">
+      <div className="z-20 my-6 flex justify-center md:col-span-5">
         <img src={meImage} className="rounded-4xl max-h-88"></img>
       </div>
     </>
