@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import Header from './Header.jsx';
-import ProgrammingIcons from "./ProgrammingIcons.jsx";
 import Blob from "./Blob.jsx";
 import ChevronLeft from '../../assets/vectors/chevron-left.svg?react';
 import ChevronRight from '../../assets/vectors/chevron-right.svg?react';
@@ -24,8 +23,7 @@ const Background = ({ children }) => {
   }
 
   return (
-    <motion.div className="overflow-auto bg-green-lightest md:h-screen md:w-screen md:overflow-hidden">
-
+    <>
       {/* Blob */}
       <motion.div className="fixed overflow-hidden left-0 bottom-0 translate-y-1/2 -translate-x-1/2" >
         <Blob></Blob>
@@ -36,49 +34,47 @@ const Background = ({ children }) => {
         <Blob></Blob>
       </motion.div>
 
-      {/* Header */}
-      <motion.div className="text-black w-full pt-12 pb-6 items flex justify-center h-1/6"
-        variants={backgroundVariants}
-        initial="hidden"
-        animate="visible"
-        custom={0}>
-        <Header sections={['Home', 'Projects', 'Experience', 'Contact']}></Header>
-      </motion.div>
+      {/* Background */}
+      <motion.div className="overflow-auto bg-green-lightest md:h-screen md:w-screen md:overflow-hidden md:grid md:grid-cols-13 md:gap-2 md:px-20">
 
-      {/* Content area */}
-      <motion.div className="px-16 py-4 items-center place-content-center md:px-20 md:h-4/6 md:grid md:grid-cols-13 md:gap-2">
         {/* Arrow */}
-        <motion.div className="hidden md:flex md:justify-start"
+        <motion.div className="hidden md:flex md:items-center"
           variants={backgroundVariants}
           initial="hidden"
           animate="visible"
           custom={1}>
-          <ChevronLeft className="fill-current text-green-dark h-2/6 w-2/6" />
+          <ChevronLeft className="fill-current text-green-dark md:h-16 md:w-16"/>
         </motion.div>
 
-        {/* Content */}
-        {children}
+        {/* Middle Content*/}
+        <div className="md:col-span-11">
+          {/* Header */}
+          <motion.div className="text-black w-full pt-12 pb-6 items flex justify-center h-1/6"
+            variants={backgroundVariants}
+            initial="hidden"
+            animate="visible"
+            custom={0}>
+            <Header sections={['Home', 'Projects', 'Experience', 'Contact']}></Header>
+          </motion.div>
+
+          {/* Content */}
+          <div className="md:h-5/6 md:content-center md:col-span-11">
+            {children}
+          </div>
+        </div>     
 
         {/* Arrow */}
-        <motion.div className="hidden md:flex md:justify-end"
+        <motion.div className="hidden md:flex md:justify-end items-center"
           variants={backgroundVariants}
           initial="hidden"
           animate="visible"
           custom={2}>
-          <ChevronRight className="fill-current text-green-dark h-2/6 w-2/6" />
+          <ChevronRight className="fill-current text-green-dark md:h-16 md:w-16" />
         </motion.div>
-      </motion.div>
+      
 
-      {/* Programming Icons */}
-      <motion.div className="px-24 pb-12 h-1/6 md:px-36"
-        variants={backgroundVariants}
-        initial="hidden"
-        animate="visible"
-        custom={3}>
-        <ProgrammingIcons></ProgrammingIcons>
       </motion.div>
-
-    </motion.div>
+    </>
   )
 }
 
