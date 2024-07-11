@@ -6,8 +6,6 @@ import ChevronRight from '../../assets/vectors/chevron-right.svg?react';
 
 const Background = ({ children }) => {
 
-  console.log(children)
-
   const backgroundVariants = {
     hidden: { y: 10, opacity: 0 },
     visible: (i) => {
@@ -58,7 +56,7 @@ const Background = ({ children }) => {
           </motion.div>
 
           {/* Content */}
-          <div className="md:h-5/6 md:content-center md:col-span-11">
+          <div className="px-16 py-4 md:h-5/6 md:content-center md:col-span-11 md:px-0 md:py-0">
             {children}
           </div>
         </div>     
