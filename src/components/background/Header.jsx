@@ -13,6 +13,24 @@ function Header(props) {
     6: 'grid-cols-6',
   }
 
+  const bgDarkColorsVariants = {
+    0: 'bg-green-dark',
+    1: 'bg-purple-dark',
+    2: 'bg-amber-dark',
+    3: 'bg-green-dark',
+    4: 'bg-purple-dark',
+    5: 'bg-amber-dark',
+  }
+
+  const bgLightColorsVariants = {
+    0: 'bg-green-light',
+    1: 'bg-purple-light',
+    2: 'bg-amber-light',
+    3: 'bg-green-light',
+    4: 'bg-purple-light',
+    5: 'bg-amber-light',
+  }
+
   const { width, height } = useWindowDimensions();
 
   const isSmallScreen = width < 768;
@@ -28,15 +46,18 @@ function Header(props) {
   })
 
   const backgrounds = sectionsToRender.map((section) => {
+    let index = props.sections.indexOf(currentSection)
+    console.log(index)
+
     if (section == currentSection) {
       return (
-        <div key={section} className="h-1.5 bg-green-dark">
+        <div key={section} className={`h-1.5 ${bgDarkColorsVariants[index]}`}>
         </div>
       )
     }
 
     return (
-      <div key={section} className="h-1.5 bg-green-light">
+      <div key={section} className={`h-1.5 ${bgLightColorsVariants[index]}`}>
       </div>
     )
   })
