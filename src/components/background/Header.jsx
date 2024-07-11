@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import useWindowDimensions from '../hooks/useWindowDimensions'
 
 function Header(props) {
+  const [currentSection, setCurrentSection] = useState(props.sections[0])
+
   const gridColumnsVariants = {
     1: 'grid-cols-1',
     2: 'grid-cols-2',
@@ -12,29 +15,28 @@ function Header(props) {
 
   const { width, height } = useWindowDimensions();
 
-  const isSmallScreen =  width < 768;
+  const isSmallScreen = width < 768;
 
   const sectionsToRender = isSmallScreen ? props.sections.slice(0, 2) : props.sections;
 
   const sections = sectionsToRender.map((section) => {
     return (
-      <div key={section} className="flex justify-center items-center text-lg p-2">
+      <button key={section} onClick={() => setCurrentSection(section)} className="flex justify-center items-center text-lg p-2">
         {section}
-      </div>
+      </button>
     )
   })
 
   const backgrounds = sectionsToRender.map((section) => {
-    console.log("Hola")
-    if (section == 'Home'){
+    if (section == currentSection) {
       return (
         <div key={section} className="h-1.5 bg-green-dark">
         </div>
       )
     }
-    
+
     return (
-      <div key={section}className="h-1.5 bg-green-light">
+      <div key={section} className="h-1.5 bg-green-light">
       </div>
     )
   })
