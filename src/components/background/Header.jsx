@@ -2,7 +2,7 @@ import { useState } from 'react'
 import useWindowDimensions from '../hooks/useWindowDimensions'
 
 function Header(props) {
-  const [currentSection, setCurrentSection] = useState(props.sections[0])
+  const { sections, currentSection, handleSection } = props;  
 
   const gridColumnsVariants = {
     1: 'grid-cols-1',
@@ -31,23 +31,37 @@ function Header(props) {
     5: 'bg-amber-light',
   }
 
+  const index = sections.indexOf(currentSection)
+
   const { width, height } = useWindowDimensions();
 
   const isSmallScreen = width < 768;
 
-  const sectionsToRender = isSmallScreen ? props.sections.slice(0, 2) : props.sections;
+  console.log("------")
+  console.log(index)
+  console.log(sections.length - 1)
 
-  const sections = sectionsToRender.map((section) => {
+  const slicingSections = (index) => {
+    if (index == 0){
+      return sections.slice(index, index + 3)
+    } else if (index == sections.length - 1) {
+      return sections.slice(index-2, index+1)
+    }
+      
+    return sections.slice(index-1, index+2)
+  }
+
+  const sectionsToRender = isSmallScreen ? slicingSections(index) : sections;
+
+  const sectionsReturn = sectionsToRender.map((section) => {
     return (
-      <button key={section} onClick={() => setCurrentSection(section)} className="flex justify-center items-center text-lg p-2">
+      <button key={section} onClick={() => handleSection(section)} className="flex justify-center items-center text-lg p-2">
         {section}
       </button>
     )
   })
 
   const backgrounds = sectionsToRender.map((section) => {
-    let index = props.sections.indexOf(currentSection)
-    console.log(index)
 
     if (section == currentSection) {
       return (
@@ -65,7 +79,7 @@ function Header(props) {
   return (
     <div>
       <div className={`grid gap-2 ${gridColumnsVariants[sectionsToRender.length]}`}>
-        {sections}
+        {sectionsReturn}
       </div>
       <div className={`grid ${gridColumnsVariants[sectionsToRender.length]}`}>
         {backgrounds}
