@@ -1,53 +1,93 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Header from './Header.jsx';
-import ProgrammingIcons from "./ProgrammingIcons.jsx";
 import Blob from "./Blob.jsx";
 import ChevronLeft from '../../assets/vectors/chevron-left.svg?react';
 import ChevronRight from '../../assets/vectors/chevron-right.svg?react';
 
 const Background = ({ children }) => {
 
-  console.log(children)
+  const sections = ['Home', 'Projects', 'Experience', 'Contact']
+
+  const [currentSection, setCurrentSection] = useState(sections[0])
+
+  const handleSection = (section) => {
+    let indexSection = sections.indexOf(section)
+    setCurrentSection(sections[indexSection])
+  }
+
+  let indexSection = sections.indexOf(currentSection)
+
+  const backgroundVariants = {
+    hidden: { y: 10, opacity: 0 },
+    visible: (i) => {
+      const delay = 0 + i * 0.20
+      return {
+        y: 0,
+        opacity: 1,
+        transition: {
+          delay: delay
+        }
+      }
+    },
+  }
 
   return (
-    <motion.div className="overflow-auto bg-green-lightest md:h-screen md:w-screen md:overflow-hidden">
+    <>
       {/* Blob */}
-      <div className="fixed overflow-hidden z-10 -bottom-28 -left-28 md:-bottom-44 md:-left-44">
+      <motion.div className="fixed overflow-hidden left-0 bottom-0 translate-y-1/2 -translate-x-1/2" >
         <Blob></Blob>
-      </div>
+      </motion.div>
 
       {/* Blob */}
-      <div className="fixed overflow-hidden z-10 -top-28 -right-28 md:-top-44 md:-right-44">
+      <motion.div className="fixed overflow-hidden right-0 top-0 -translate-y-1/2 translate-x-1/2">
         <Blob></Blob>
-      </div>
+      </motion.div>
+
+      {/* Background */}
+      <motion.div className="overflow-auto bg-green-lightest md:h-screen md:w-screen md:overflow-hidden md:grid md:grid-cols-13 md:gap-2 md:px-20">
+
+        {/* Arrow */}
+        {indexSection != 0 && <motion.div className="hidden md:flex md:items-center" 
+          variants={backgroundVariants}
+          initial="hidden"
+          animate="visible"
+          custom={1}>
+          <button onClick={() => handleSection(sections[sections.indexOf(currentSection) - 1])}>
+            <ChevronLeft className="fill-current text-green-dark md:h-16 md:w-16"/>
+          </button>
+        </motion.div> || <motion.div className="hidden md:flex md:items-center" />}
+
+        {/* Middle Content*/}
+        <div className="md:col-span-11">
+          {/* Header */}
+          <motion.div className="text-black w-full pt-12 pb-6 items flex justify-center h-1/6"
+            variants={backgroundVariants}
+            initial="hidden"
+            animate="visible"
+            custom={0}>
+            <Header sections={sections} currentSection={currentSection} handleSection={handleSection}></Header>
+          </motion.div>
+
+          {/* Content */}
+          <div className="px-16 py-4 md:h-5/6 md:content-center md:col-span-11 md:px-0 md:py-0">
+            {children[indexSection]}
+          </div>
+        </div>     
+
+        {/* Arrow */}
+        {indexSection != sections.length - 1 && <motion.div className="hidden md:flex md:justify-end items-center"
+          variants={backgroundVariants}
+          initial="hidden"
+          animate="visible"
+          custom={2}>
+          <button onClick={() => handleSection(sections[sections.indexOf(currentSection) + 1])}>
+            <ChevronRight className="fill-current text-green-dark md:h-16 md:w-16"/>
+          </button>
+        </motion.div> || <motion.div className="hidden md:flex md:items-center" />}
       
-      {/* Header */}
-      <div className="text-black w-full pt-12 pb-6 items flex justify-center h-1/6">
-        <Header sections={['Home', 'Projects', 'Experience', 'Contact']}></Header>
-      </div>
-
-      {/* Content area */}
-      <div className="px-16 py-4 items-center place-content-center md:px-20 md:h-4/6 md:grid md:grid-cols-13 md:gap-2">
-        {/* Arrow */}
-        <div className="hidden md:flex md:justify-start">
-          <ChevronLeft className="fill-current text-green-dark h-2/6 w-2/6"/>
-        </div>
-
-        {/* Content */}
-        {children}
-
-        {/* Arrow */}
-        <div className="hidden md:flex md:justify-end">
-          <ChevronRight className="fill-current text-green-dark h-2/6 w-2/6"/>
-        </div>
-      </div>
-
-      {/* Programming Icons */}
-      <div className="px-24 pb-12 h-1/6 md:px-36">
-        <ProgrammingIcons></ProgrammingIcons>
-      </div>
-
-    </motion.div>
+      </motion.div>
+    </>
   )
 }
 

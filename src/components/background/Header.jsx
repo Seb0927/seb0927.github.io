@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import useWindowDimensions from '../hooks/useWindowDimensions'
 
 function Header(props) {
+  const { sections, currentSection, handleSection } = props;  
+
   const gridColumnsVariants = {
     1: 'grid-cols-1',
     2: 'grid-cols-2',
@@ -10,31 +13,65 @@ function Header(props) {
     6: 'grid-cols-6',
   }
 
+  const bgDarkColorsVariants = {
+    0: 'bg-green-dark',
+    1: 'bg-purple-dark',
+    2: 'bg-amber-dark',
+    3: 'bg-green-dark',
+    4: 'bg-purple-dark',
+    5: 'bg-amber-dark',
+  }
+
+  const bgLightColorsVariants = {
+    0: 'bg-green-light',
+    1: 'bg-purple-light',
+    2: 'bg-amber-light',
+    3: 'bg-green-light',
+    4: 'bg-purple-light',
+    5: 'bg-amber-light',
+  }
+
+  const index = sections.indexOf(currentSection)
+
   const { width, height } = useWindowDimensions();
 
-  const isSmallScreen =  width < 768;
+  const isSmallScreen = width < 768;
 
-  const sectionsToRender = isSmallScreen ? props.sections.slice(0, 2) : props.sections;
+  console.log("------")
+  console.log(index)
+  console.log(sections.length - 1)
 
-  const sections = sectionsToRender.map((section) => {
+  const slicingSections = (index) => {
+    if (index == 0){
+      return sections.slice(index, index + 3)
+    } else if (index == sections.length - 1) {
+      return sections.slice(index-2, index+1)
+    }
+      
+    return sections.slice(index-1, index+2)
+  }
+
+  const sectionsToRender = isSmallScreen ? slicingSections(index) : sections;
+
+  const sectionsReturn = sectionsToRender.map((section) => {
     return (
-      <div key={section} className="flex justify-center items-center text-lg p-2">
+      <button key={section} onClick={() => handleSection(section)} className="flex justify-center items-center text-lg p-2">
         {section}
-      </div>
+      </button>
     )
   })
 
   const backgrounds = sectionsToRender.map((section) => {
-    console.log("Hola")
-    if (section == 'Home'){
+
+    if (section == currentSection) {
       return (
-        <div key={section} className="h-1.5 bg-green-dark">
+        <div key={section} className={`h-1.5 ${bgDarkColorsVariants[index]}`}>
         </div>
       )
     }
-    
+
     return (
-      <div key={section}className="h-1.5 bg-green-light">
+      <div key={section} className={`h-1.5 ${bgLightColorsVariants[index]}`}>
       </div>
     )
   })
@@ -42,7 +79,7 @@ function Header(props) {
   return (
     <div>
       <div className={`grid gap-2 ${gridColumnsVariants[sectionsToRender.length]}`}>
-        {sections}
+        {sectionsReturn}
       </div>
       <div className={`grid ${gridColumnsVariants[sectionsToRender.length]}`}>
         {backgrounds}
