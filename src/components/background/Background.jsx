@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Header from './Header.jsx';
 import Blob from "./Blob.jsx";
+import { bgLightestColorsVariants } from "../../utils";
 import ChevronLeft from '../../assets/vectors/chevron-left.svg?react';
 import ChevronRight from '../../assets/vectors/chevron-right.svg?react';
 
@@ -45,7 +46,7 @@ const Background = ({ children }) => {
       </motion.div>
 
       {/* Background */}
-      <motion.div className="overflow-auto bg-green-lightest md:h-screen md:w-screen md:overflow-hidden md:grid md:grid-cols-13 md:gap-2 md:px-20">
+      <motion.div className={`overflow-auto ${bgLightestColorsVariants[indexSection]} md:h-screen md:w-screen md:overflow-hidden md:grid md:grid-cols-13 md:gap-2 md:px-20`}>
 
         {/* Arrow */}
         {indexSection != 0 && <motion.div className="hidden md:flex md:items-center" 

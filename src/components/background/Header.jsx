@@ -1,45 +1,16 @@
 import { useState } from 'react'
-import useWindowDimensions from '../hooks/useWindowDimensions'
+import { useWindowDimensions}  from '../../hooks'
+import { gridColumnsVariants, bgDarkColorsVariants, bgLightColorsVariants } from '../../utils'
 
-function Header(props) {
-  const { sections, currentSection, handleSection } = props;  
+function Header(props) { 
 
-  const gridColumnsVariants = {
-    1: 'grid-cols-1',
-    2: 'grid-cols-2',
-    3: 'grid-cols-3',
-    4: 'grid-cols-4',
-    5: 'grid-cols-5',
-    6: 'grid-cols-6',
-  }
-
-  const bgDarkColorsVariants = {
-    0: 'bg-green-dark',
-    1: 'bg-purple-dark',
-    2: 'bg-amber-dark',
-    3: 'bg-green-dark',
-    4: 'bg-purple-dark',
-    5: 'bg-amber-dark',
-  }
-
-  const bgLightColorsVariants = {
-    0: 'bg-green-light',
-    1: 'bg-purple-light',
-    2: 'bg-amber-light',
-    3: 'bg-green-light',
-    4: 'bg-purple-light',
-    5: 'bg-amber-light',
-  }
+  const { sections, currentSection, handleSection } = props; 
 
   const index = sections.indexOf(currentSection)
 
   const { width, height } = useWindowDimensions();
 
   const isSmallScreen = width < 768;
-
-  console.log("------")
-  console.log(index)
-  console.log(sections.length - 1)
 
   const slicingSections = (index) => {
     if (index == 0){

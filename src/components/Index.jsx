@@ -1,9 +1,7 @@
-import Background from "./background/Background"
-import Blob from "./background/Blob"
-import Header from "./background/Header"
-import Presentation from "./presentation/Presentation"
-import Projects from "./projects/Projects"
-import Experience from "./experience/Experience"
-import Contact from "./contact/Contact"
+import Background from "./background"
+import Presentation from "./presentation"
+import Projects from "./projects"
+import Experience from "./experience"
+import Contact from "./contact"
 
-export { Background, Blob, Presentation, Projects, Experience, Contact, Header }
+export { Background, Presentation, Projects, Experience, Contact }

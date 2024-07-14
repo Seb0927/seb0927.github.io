@@ -1,5 +1,4 @@
-import { Background } from './components/Index';
-import { Presentation, Projects, Experience, Contact } from './components/Index';
+import { Background, Presentation, Projects, Experience, Contact } from './components';
 
 export default function App() {
   return (
