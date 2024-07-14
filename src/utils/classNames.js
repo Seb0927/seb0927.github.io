@@ -33,3 +33,21 @@ export const bgLightColorsVariants = {
   4: 'bg-purple-light',
   5: 'bg-amber-light',
 }
+
+export const textLightColorsVariants = {
+  0: 'text-green-light',
+  1: 'text-purple-light',
+  2: 'text-amber-light',
+  3: 'text-green-light',
+  4: 'text-purple-light',
+  5: 'text-amber-light',
+}
+
+export const textDarkColorsVariants = {
+  0: 'text-green-dark',
+  1: 'text-purple-dark',
+  2: 'text-amber-dark',
+  3: 'text-green-dark',
+  4: 'text-purple-dark',
+  5: 'text-amber-dark',
+}

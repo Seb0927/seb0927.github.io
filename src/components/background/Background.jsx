@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Header from './Header.jsx';
 import Blob from "./Blob.jsx";
-import { bgLightestColorsVariants } from "../../utils";
+import { bgLightestColorsVariants, textDarkColorsVariants } from "../../utils";
 import ChevronLeft from '../../assets/vectors/chevron-left.svg?react';
 import ChevronRight from '../../assets/vectors/chevron-right.svg?react';
 
@@ -37,12 +37,12 @@ const Background = ({ children }) => {
     <>
       {/* Blob */}
       <motion.div className="fixed overflow-hidden left-0 bottom-0 translate-y-1/2 -translate-x-1/2" >
-        <Blob></Blob>
+        <Blob sections={sections} currentSection={currentSection} handleSection={handleSection}></Blob>
       </motion.div>
 
       {/* Blob */}
       <motion.div className="fixed overflow-hidden right-0 top-0 -translate-y-1/2 translate-x-1/2">
-        <Blob></Blob>
+        <Blob sections={sections} currentSection={currentSection} handleSection={handleSection}></Blob>
       </motion.div>
 
       {/* Background */}
@@ -55,7 +55,7 @@ const Background = ({ children }) => {
           animate="visible"
           custom={1}>
           <button onClick={() => handleSection(sections[sections.indexOf(currentSection) - 1])}>
-            <ChevronLeft className="fill-current text-green-dark md:h-16 md:w-16"/>
+            <ChevronLeft className={`fill-current ${textDarkColorsVariants[indexSection]} md:h-16 md:w-16`}/>
           </button>
         </motion.div> || <motion.div className="hidden md:flex md:items-center" />}
 
@@ -83,7 +83,7 @@ const Background = ({ children }) => {
           animate="visible"
           custom={2}>
           <button onClick={() => handleSection(sections[sections.indexOf(currentSection) + 1])}>
-            <ChevronRight className="fill-current text-green-dark md:h-16 md:w-16"/>
+            <ChevronRight className={`fill-current ${textDarkColorsVariants[indexSection]} md:h-16 md:w-16`}/>
           </button>
         </motion.div> || <motion.div className="hidden md:flex md:items-center" />}
       

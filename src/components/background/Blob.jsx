@@ -1,8 +1,14 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
+import { textLightColorsVariants } from '../../utils'
 import Asterisk from '../../assets/vectors/asterisk.svg?react';
 
-const Blob = ({ onClick }) => {
+const Blob = (props) => {
+
+  const { sections, currentSection, handleSection } = props; 
+
+  const index = sections.indexOf(currentSection)
+
   const controls = useAnimation();
 
   useEffect(() => {
@@ -35,7 +41,7 @@ const Blob = ({ onClick }) => {
       onHoverEnd={handleHoverEnd}
       onClickCapture={handleClick}
     >
-      <Asterisk className="fill-current text-green-light h-52 w-52 sm:w-72 sm:h-72 md:h-96 md:w-96 lg:h-108 lg:w-108">
+      <Asterisk className={`fill-current ${textLightColorsVariants[index]} h-52 w-52 sm:w-72 sm:h-72 md:h-96 md:w-96 lg:h-108 lg:w-108`}>
       </Asterisk>
     </motion.div>
   );
