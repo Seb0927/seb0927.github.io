@@ -1,8 +1,18 @@
+import { motion } from "framer-motion";
 import { useState } from 'react'
 import { useWindowDimensions}  from '../../hooks'
-import { gridColumnsVariants, bgDarkColorsVariants, bgLightColorsVariants } from '../../utils'
+import { gridColumnsVariants, bgDarkColorsVariants, bgLightColorsVariants, bgDarkColorValues } from '../../utils'
 
 function Header(props) { 
+
+  const test = {
+    0: '#000000',
+    1: '#ffffff',
+    2: '#000000',
+    3: '#ffffff',
+    4: '#000000',
+    5: '#ffffff',
+  }
 
   const { sections, currentSection, handleSection } = props; 
 
@@ -33,17 +43,17 @@ function Header(props) {
   })
 
   const backgrounds = sectionsToRender.map((section) => {
-
-    if (section == currentSection) {
-      return (
-        <div key={section} className={`h-1.5 ${bgDarkColorsVariants[index]}`}>
-        </div>
-      )
-    }
-
+    const isCurrentSection = section === currentSection;
     return (
-      <div key={section} className={`h-1.5 ${bgLightColorsVariants[index]}`}>
-      </div>
+      <div key={ section } className="relative bg-green-dark">
+        <div className={`h-1.5 ${bgLightColorsVariants[index]}`}></div>
+        {isCurrentSection && <motion.div
+          key={"current-section"}
+          layoutId="current-section"
+          className={`h-1.5 ${bgDarkColorsVariants[index]} z-1`}
+          style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 1}}
+        />}
+      </div> 
     )
   })
 
