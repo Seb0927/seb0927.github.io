@@ -2,7 +2,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Header from './Header.jsx';
 import Blob from "./Blob.jsx";
-import { bgLightestColorsVariants, textDarkColorsVariants } from "../../utils";
+import usePrevious from "../../hooks/usePrevious";
+import { bgLightestColorsVariants, textDarkColorsVariants, bgLightestColorsValues } from "../../utils";
 import ChevronLeft from '../../assets/vectors/chevron-left.svg?react';
 import ChevronRight from '../../assets/vectors/chevron-right.svg?react';
 
@@ -11,6 +12,7 @@ const Background = ({ children }) => {
   const sections = ['Home', 'Projects', 'Experience', 'Contact']
 
   const [currentSection, setCurrentSection] = useState(sections[0])
+  const previousSection = usePrevious(currentSection);
 
   const handleSection = (section) => {
     let indexSection = sections.indexOf(section)
@@ -19,7 +21,7 @@ const Background = ({ children }) => {
 
   let indexSection = sections.indexOf(currentSection)
 
-  const backgroundVariants = {
+  const initialVariants = {
     hidden: { y: 10, opacity: 0 },
     visible: (i) => {
       const delay = 0 + i * 0.20
@@ -46,11 +48,15 @@ const Background = ({ children }) => {
       </motion.div>
 
       {/* Background */}
-      <motion.div className={`overflow-auto ${bgLightestColorsVariants[indexSection]} md:h-screen md:w-screen md:overflow-hidden md:grid md:grid-cols-13 md:gap-2 md:px-20`}>
+      <motion.div className={`overflow-auto ${bgLightestColorsVariants[indexSection]} md:h-screen md:w-screen md:overflow-hidden md:grid md:grid-cols-13 md:gap-2 md:px-20`}
+      layoutId="current-background"
+      transition={{ duration: 0.5}}
+      initial = {{ backgroundColor:  bgLightestColorsValues[indexSection-1]}}
+      animate = {{ backgroundColor:  bgLightestColorsValues[indexSection]}}>
 
         {/* Arrow */}
         {indexSection != 0 && <motion.div className="hidden md:flex md:items-center" 
-          variants={backgroundVariants}
+          variants={initialVariants}
           initial="hidden"
           animate="visible"
           custom={1}>
@@ -63,7 +69,7 @@ const Background = ({ children }) => {
         <div className="md:col-span-11">
           {/* Header */}
           <motion.div className="text-black w-full pt-12 pb-6 items flex justify-center h-1/6"
-            variants={backgroundVariants}
+            variants={initialVariants}
             initial="hidden"
             animate="visible"
             custom={0}>

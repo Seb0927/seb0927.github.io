@@ -1,18 +1,8 @@
 import { motion } from "framer-motion";
-import { useState } from 'react'
 import { useWindowDimensions}  from '../../hooks'
-import { gridColumnsVariants, bgDarkColorsVariants, bgLightColorsVariants, bgDarkColorValues } from '../../utils'
+import { gridColumnsVariants, bgDarkColorsVariants, bgLightColorsVariants} from '../../utils'
 
 function Header(props) { 
-
-  const test = {
-    0: '#000000',
-    1: '#ffffff',
-    2: '#000000',
-    3: '#ffffff',
-    4: '#000000',
-    5: '#ffffff',
-  }
 
   const { sections, currentSection, handleSection } = props; 
 
