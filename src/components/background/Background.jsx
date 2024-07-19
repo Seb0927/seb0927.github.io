@@ -35,6 +35,16 @@ const Background = ({ children }) => {
     },
   }
 
+  const backgroundVariants = {
+    lastColor: { backgroundColor:  bgLightestColorsValues[indexSection-1]},
+    newColor: {
+      backgroundColor:  bgLightestColorsValues[indexSection],
+      transition: {
+        duration: 0.5
+      }
+    }
+  }
+
   return (
     <>
       {/* Blob */}
@@ -49,10 +59,10 @@ const Background = ({ children }) => {
 
       {/* Background */}
       <motion.div className={`overflow-auto ${bgLightestColorsVariants[indexSection]} md:h-screen md:w-screen md:overflow-hidden md:grid md:grid-cols-13 md:gap-2 md:px-20`}
+      variants={backgroundVariants}
       layoutId="current-background"
-      transition={{ duration: 0.5}}
-      initial = {{ backgroundColor:  bgLightestColorsValues[indexSection-1]}}
-      animate = {{ backgroundColor:  bgLightestColorsValues[indexSection]}}>
+      initial = "lastColor"
+      animate = "newColor">
 
         {/* Arrow */}
         {indexSection != 0 && <motion.div className="hidden md:flex md:items-center" 
