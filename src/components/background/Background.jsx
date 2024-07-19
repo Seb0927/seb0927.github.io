@@ -84,7 +84,7 @@ const Background = ({ children }) => {
 
         {/* Arrow */}
         {indexSection != sections.length - 1 && <motion.div className="hidden md:flex md:justify-end items-center"
-          variants={backgroundVariants}
+          variants={initialVariants}
           initial="hidden"
           animate="visible"
           custom={2}>
