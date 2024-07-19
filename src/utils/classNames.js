@@ -7,6 +7,16 @@ export const bgLightestColorsValues = {
   5: '#FFF3E3',
 }
 
+export const bgLightColorValues = {
+  0: '#62AA75',
+  1: '#AA91CC',
+  2: '#D7BB98',
+  3: '#62AA75',
+  4: '#AA91CC',
+  5: '#D7BB98',
+
+}
+
 export const bgLightestColorsVariants = {
   0: 'bg-green-lightest',
   1: 'bg-purple-lightest',

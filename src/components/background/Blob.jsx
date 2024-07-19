@@ -1,13 +1,11 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
-import { textLightColorsVariants } from '../../utils'
+import { bgLightColorValues } from '../../utils';
 import Asterisk from '../../assets/vectors/asterisk.svg?react';
 
 const Blob = (props) => {
-
-  const { sections, currentSection, handleSection } = props; 
-
-  const index = sections.indexOf(currentSection)
+  const { sections, currentSection } = props; 
+  const indexSection = sections.indexOf(currentSection);
 
   const controls = useAnimation();
 
@@ -22,6 +20,15 @@ const Blob = (props) => {
     });
   }, [controls]);
 
+  useEffect(() => {
+    controls.start({
+      fill: bgLightColorValues[indexSection],
+      transition: {
+        duration: 0.5
+      }
+    });
+  }, [currentSection]);
+
   const handleHoverStart = () => {
     controls.start({ scale: 1.1, transition: { duration: 0.2 } });
   };
@@ -31,18 +38,18 @@ const Blob = (props) => {
   };
 
   const handleClick = () => {
-    controls.start({ scale: [null, 1.25, 1.1], transition: { duration: 0.5, times: [0, 0.25, 0.5]}});
-  }
+    controls.start({ scale: [null, 1.25, 1.1], transition: { duration: 0.5, times: [0, 0.25, 0.5]} });
+  };
 
   return (
     <motion.div 
+      initial={{ fill: bgLightColorValues[indexSection] }}
       animate={controls}
       onHoverStart={handleHoverStart}
       onHoverEnd={handleHoverEnd}
       onClickCapture={handleClick}
     >
-      <Asterisk className={`fill-current ${textLightColorsVariants[index]} h-52 w-52 sm:w-72 sm:h-72 md:h-96 md:w-96 lg:h-108 lg:w-108`}>
-      </Asterisk>
+      <Asterisk className="h-52 w-52 sm:w-72 sm:h-72 md:h-96 md:w-96 lg:h-108 lg:w-108" />
     </motion.div>
   );
 }
