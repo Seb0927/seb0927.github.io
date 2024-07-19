@@ -1,4 +1,4 @@
-import { Background, Presentation, Projects, Experience, Contact } from './components';
+import { Background, Presentation, Projects, Experience, Contact } from "./components";
 
 export default function App() {
   return (
