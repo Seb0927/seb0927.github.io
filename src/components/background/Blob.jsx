@@ -1,6 +1,6 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
-import { bgLightColorValues } from '../../utils';
+import { bgLightColorsValues } from '../../utils';
 import Asterisk from '../../assets/vectors/asterisk.svg?react';
 
 const Blob = (props) => {
@@ -22,7 +22,7 @@ const Blob = (props) => {
 
   useEffect(() => {
     controls.start({
-      fill: bgLightColorValues[indexSection],
+      fill: bgLightColorsValues[indexSection],
       transition: {
         duration: 0.5
       }
@@ -43,7 +43,7 @@ const Blob = (props) => {
 
   return (
     <motion.div 
-      initial={{ fill: bgLightColorValues[indexSection] }}
+      initial={{ fill: bgLightColorsValues[indexSection] }}
       animate={controls}
       onHoverStart={handleHoverStart}
       onHoverEnd={handleHoverEnd}
