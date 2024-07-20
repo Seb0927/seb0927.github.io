@@ -2,14 +2,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useWindowDimensions}  from '../../hooks'
 import { gridColumnsVariants, bgDarkColorsVariants, bgLightColorsVariants, bgLightColorsValues, bgDarkColorsValues} from '../../utils'
 
-function Header(props) { 
-
+function Header(props) {
+  // Component variables
   const { sections, currentSection, handleSection } = props; 
-
   const index = sections.indexOf(currentSection)
 
+  // Amount of sections to render
   const { width, height } = useWindowDimensions();
-
   const isSmallScreen = width < 768;
 
   const slicingSections = (index) => {
@@ -22,15 +21,6 @@ function Header(props) {
     return sections.slice(index-1, index+2)
   }
 
-  const lightVariants = {
-    newColor: {
-      backgroundColor: bgLightColorsValues[index],
-      transition: {
-        duration: 0.5
-      }
-    }
-  }
-
   const sectionsToRender = isSmallScreen ? slicingSections(index) : sections;
 
   const sectionsReturn = sectionsToRender.map((section) => {
@@ -41,6 +31,17 @@ function Header(props) {
     )
   })
 
+  // Framer motion variants
+  const lightVariants = {
+    newColor: {
+      backgroundColor: bgLightColorsValues[index],
+      transition: {
+        duration: 0.5
+      }
+    }
+  }
+
+  // Bottom bar backgrounds
   const backgrounds = sectionsToRender.map((section) => {
     const isCurrentSection = section === currentSection;
     return (
@@ -60,9 +61,11 @@ function Header(props) {
 
   return (
     <div>
+      {/* Header Sections */}
       <div className={`grid gap-2 ${gridColumnsVariants[sectionsToRender.length]}`}>
         {sectionsReturn}
       </div>
+      {/* Bottom Bar Header */}
       <div className={`grid ${gridColumnsVariants[sectionsToRender.length]}`}>
         {backgrounds}
       </div>

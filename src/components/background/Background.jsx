@@ -2,24 +2,21 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Header from './Header.jsx';
 import Blob from "./Blob.jsx";
-import usePrevious from "../../hooks/usePrevious";
-import { bgLightestColorsVariants, textDarkColorsVariants, bgLightestColorsValues, bgDarkColorsValues } from "../../utils";
+import { bgLightestColorsVariants, bgLightestColorsValues, bgDarkColorsValues } from "../../utils";
 import ChevronLeft from '../../assets/vectors/chevron-left.svg?react';
 import ChevronRight from '../../assets/vectors/chevron-right.svg?react';
 
 const Background = ({ children }) => {
-
+  // Component variables
   const sections = ['Home', 'Projects', 'Experience', 'Contact']
-
   const [currentSection, setCurrentSection] = useState(sections[0])
-
   const handleSection = (section) => {
     let indexSection = sections.indexOf(section)
     setCurrentSection(sections[indexSection])
   }
-
   let indexSection = sections.indexOf(currentSection)
 
+  // Framer motion variants
   const initialVariants = {
     hiddenUp: { y: 10, opacity: 0 },
     hiddenDown: { y: -10, opacity: 0 },
@@ -34,7 +31,6 @@ const Background = ({ children }) => {
       }
     },
   }
-
   const lightestVariants = {
     newColor: {
       backgroundColor: bgLightestColorsValues[indexSection],
@@ -43,7 +39,6 @@ const Background = ({ children }) => {
       }
     }
   }
-
   const darkVariants = {
     oldColor: {
       fill: bgDarkColorsValues[(indexSection === 1 ? 0 : indexSection - 1)],
@@ -58,7 +53,6 @@ const Background = ({ children }) => {
       }
     }
   }
-
 
   return (
     <>
@@ -78,10 +72,12 @@ const Background = ({ children }) => {
         layoutId="current-background"
         animate="newColor">
 
-        {/* Arrow */}
-        <motion.div className="hidden md:flex md:justify-start md:items-center">
+        {/* Left Arrow */}
+        <div className="hidden md:flex md:justify-start md:items-center">
           <AnimatePresence>
-            {indexSection > 0 && <motion.div variants={{ ...initialVariants, ...darkVariants }}
+            {indexSection > 0 && 
+              <motion.div 
+              variants={{ ...initialVariants, ...darkVariants }}
               initial={"hiddenUp"}
               animate={["visible", "newColor"]}
               exit={["oldColor", "hiddenDown"]}
@@ -91,15 +87,15 @@ const Background = ({ children }) => {
               </button>
             </motion.div>}
           </AnimatePresence>
-        </motion.div>
+        </div>
 
         {/* Middle Content*/}
         <div className="md:col-span-11">
           {/* Header */}
           <motion.div className="text-black w-full pt-12 pb-6 items flex justify-center h-1/6"
             variants={initialVariants}
-            initial="hiddenUp"
-            animate="visible"
+            initial={"hiddenUp"}
+            animate={"visible"}
             custom={0}>
             <Header sections={sections} currentSection={currentSection} handleSection={handleSection}></Header>
           </motion.div>
@@ -110,8 +106,8 @@ const Background = ({ children }) => {
           </div>
         </div>
 
-        {/* Arrow */}
-        <motion.div className="hidden md:flex md:justify-end items-center">
+        {/* Right Arrow */}
+        <div className="hidden md:flex md:justify-end items-center">
           <AnimatePresence>
             {indexSection < sections.length - 1 && <motion.div variants={{ ...initialVariants, ...darkVariants }}
               initial={"hiddenUp"}
@@ -123,8 +119,7 @@ const Background = ({ children }) => {
               </button>
             </motion.div>}
           </AnimatePresence>
-        </motion.div>
-
+        </div>
       </motion.div>
     </>
   )

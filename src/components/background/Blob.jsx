@@ -4,9 +4,11 @@ import { bgLightColorsValues } from '../../utils';
 import Asterisk from '../../assets/vectors/asterisk.svg?react';
 
 const Blob = (props) => {
+  // Component variables
   const { sections, currentSection } = props; 
   const indexSection = sections.indexOf(currentSection);
 
+  // Rotation and transition color controls
   const controls = useAnimation();
 
   useEffect(() => {
