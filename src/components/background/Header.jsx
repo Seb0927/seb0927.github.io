@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useWindowDimensions}  from '../../hooks'
-import { gridColumnsVariants, bgDarkColorsVariants, bgLightColorsVariants} from '../../utils'
+import { gridColumnsVariants, bgDarkColorsVariants, bgLightColorsVariants, bgLightColorsValues, bgDarkColorsValues} from '../../utils'
 
 function Header(props) { 
 
@@ -22,6 +22,15 @@ function Header(props) {
     return sections.slice(index-1, index+2)
   }
 
+  const lightVariants = {
+    newColor: {
+      backgroundColor: bgLightColorsValues[index],
+      transition: {
+        duration: 0.5
+      }
+    }
+  }
+
   const sectionsToRender = isSmallScreen ? slicingSections(index) : sections;
 
   const sectionsReturn = sectionsToRender.map((section) => {
@@ -35,14 +44,16 @@ function Header(props) {
   const backgrounds = sectionsToRender.map((section) => {
     const isCurrentSection = section === currentSection;
     return (
-      <div key={ section } className="relative bg-green-dark">
-        <div className={`h-1.5 ${bgLightColorsVariants[index]}`}></div>
-        {isCurrentSection && <motion.div
-          key={"current-section"}
-          layoutId="current-section"
-          className={`h-1.5 ${bgDarkColorsVariants[index]} z-1`}
-          style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 1}}
-        />}
+      <div key={section} className="relative">
+        <motion.div className={`h-1.5 ${bgLightColorsVariants[index]}`} variants={lightVariants} animate={"newColor"}></motion.div>
+        <AnimatePresence>
+          {isCurrentSection && <motion.div
+            key={"current-section"}
+            layoutId="current-section"
+            className={`h-1.5 ${bgDarkColorsVariants[index]} z-1`}
+            style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 1}}
+          />}
+        </AnimatePresence>
       </div> 
     )
   })

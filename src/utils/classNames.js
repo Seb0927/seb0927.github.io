@@ -18,12 +18,12 @@ export const bgLightColorsValues = {
 }
 
 export const bgDarkColorsValues = {
-  0: '#2D6D3B',
-  1: '#6B4B8A',
-  2: '#A67B4E',
-  3: '#2D6D3B',
-  4: '#6B4B8A',
-  5: '#A67B4E',
+  0: '#155526',
+  1: '#6F4E99',
+  2: '#AA8B62',
+  3: '#155526',
+  4: '#6F4E99',
+  5: '#AA8B62',
 
 }
 
