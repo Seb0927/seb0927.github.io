@@ -17,7 +17,7 @@ const Background = ({ children }) => {
   let indexSection = sections.indexOf(currentSection)
 
   // Framer motion variants
-  const initialVariants = {
+  const renderVariants = {
     hiddenUp: { y: 10, opacity: 0 },
     hiddenDown: { y: -10, opacity: 0 },
     visible: (i) => {
@@ -77,7 +77,7 @@ const Background = ({ children }) => {
           <AnimatePresence>
             {indexSection > 0 && 
               <motion.div 
-              variants={{ ...initialVariants, ...darkVariants }}
+              variants={{ ...renderVariants, ...darkVariants }}
               initial={"hiddenUp"}
               animate={["visible", "newColor"]}
               exit={["oldColor", "hiddenDown"]}
@@ -93,7 +93,7 @@ const Background = ({ children }) => {
         <div className="md:col-span-11">
           {/* Header */}
           <motion.div className="text-black w-full pt-12 pb-6 items flex justify-center h-1/6"
-            variants={initialVariants}
+            variants={renderVariants}
             initial={"hiddenUp"}
             animate={"visible"}
             custom={0}>
@@ -109,7 +109,7 @@ const Background = ({ children }) => {
         {/* Right Arrow */}
         <div className="hidden md:flex md:justify-end items-center">
           <AnimatePresence>
-            {indexSection < sections.length - 1 && <motion.div variants={{ ...initialVariants, ...darkVariants }}
+            {indexSection < sections.length - 1 && <motion.div variants={{ ...renderVariants, ...darkVariants }}
               initial={"hiddenUp"}
               animate={["newColor", "visible"]}
               exit={["oldColor", "hiddenDown"]}
