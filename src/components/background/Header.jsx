@@ -25,13 +25,15 @@ function Header(props) {
 
   const sectionsReturn = sectionsToRender.map((section) => {
     return (
-      <motion.button key={section} onClick={() => handleSection(section)} className="flex-1 justify-center text-lg p-2"
-        initial={{ opacity: 0, transition: { delay: 0.5} }}
+      <motion.li className="flex-1 text-center text-lg p-2" initial={{ opacity: 0, transition: { delay: 0.5 } }}
         animate={{ opacity: 1, transition: { delay: 0.5 } }}
-        exit={{ opacity: 0, transition: { delay: 0 } }} 
-        layoutId={section}>
-        {section}
-      </motion.button>
+        exit={{ opacity: 0, transition: { delay: 0 } }}
+        layoutId={section}
+        key={section}>
+        <motion.button onClick={() => handleSection(section)}>
+          {section}
+        </motion.button>
+      </motion.li>
     )
   })
 
@@ -52,12 +54,12 @@ function Header(props) {
       <div key={section} className="flex-1 justify-center h-1.5">
         <motion.div className={`h-1.5 ${bgLightColorsVariants[index]}`} variants={lightVariants} animate={"newColor"}>
           <AnimatePresence mode="sync">
-          {isCurrentSection && <motion.div
-            key={"current-section"}
-            layoutId="current-section"
-            className={`h-1.5 ${bgDarkColorsVariants[index]} relative z-1`}
-          />}
-        </AnimatePresence>
+            {isCurrentSection && <motion.div
+              key={"current-section"}
+              layoutId="current-section"
+              className={`h-1.5 ${bgDarkColorsVariants[index]} relative z-1`}
+            />}
+          </AnimatePresence>
         </motion.div>
       </div>
     )
@@ -66,11 +68,13 @@ function Header(props) {
   return (
     <div className="w-88 md:w-120">
       {/* Header Sections */}
-      <div className="flex flex-row">
-        <AnimatePresence mode="popLayout" initial={false}>
-          {sectionsReturn}
-        </AnimatePresence>
-      </div>
+      <nav>
+        <ul className="flex flex-row justify-center">
+          <AnimatePresence mode="popLayout" initial={false}>
+            {sectionsReturn}
+          </AnimatePresence>
+        </ul>
+      </nav>
       {/* Bottom Bar Header */}
       <div className="flex flex-row">
         {backgrounds}
