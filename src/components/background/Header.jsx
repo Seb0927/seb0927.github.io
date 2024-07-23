@@ -1,87 +1,82 @@
-import { useState } from 'react'
-import useWindowDimensions from '../hooks/useWindowDimensions'
+import { AnimatePresence, motion } from "framer-motion";
+import { useWindowDimensions } from '../../hooks'
+import { gridColumnsVariants, bgDarkColorsVariants, bgLightColorsVariants, bgLightColorsValues, bgDarkColorsValues } from '../../utils'
 
 function Header(props) {
-  const { sections, currentSection, handleSection } = props;  
-
-  const gridColumnsVariants = {
-    1: 'grid-cols-1',
-    2: 'grid-cols-2',
-    3: 'grid-cols-3',
-    4: 'grid-cols-4',
-    5: 'grid-cols-5',
-    6: 'grid-cols-6',
-  }
-
-  const bgDarkColorsVariants = {
-    0: 'bg-green-dark',
-    1: 'bg-purple-dark',
-    2: 'bg-amber-dark',
-    3: 'bg-green-dark',
-    4: 'bg-purple-dark',
-    5: 'bg-amber-dark',
-  }
-
-  const bgLightColorsVariants = {
-    0: 'bg-green-light',
-    1: 'bg-purple-light',
-    2: 'bg-amber-light',
-    3: 'bg-green-light',
-    4: 'bg-purple-light',
-    5: 'bg-amber-light',
-  }
-
+  // Component variables
+  const { sections, currentSection, handleSection } = props;
   const index = sections.indexOf(currentSection)
 
+  // Amount of sections to render
   const { width, height } = useWindowDimensions();
-
   const isSmallScreen = width < 768;
 
-  console.log("------")
-  console.log(index)
-  console.log(sections.length - 1)
-
   const slicingSections = (index) => {
-    if (index == 0){
+    if (index == 0) {
       return sections.slice(index, index + 3)
     } else if (index == sections.length - 1) {
-      return sections.slice(index-2, index+1)
+      return sections.slice(index - 2, index + 1)
     }
-      
-    return sections.slice(index-1, index+2)
+
+    return sections.slice(index - 1, index + 2)
   }
 
   const sectionsToRender = isSmallScreen ? slicingSections(index) : sections;
 
   const sectionsReturn = sectionsToRender.map((section) => {
     return (
-      <button key={section} onClick={() => handleSection(section)} className="flex justify-center items-center text-lg p-2">
-        {section}
-      </button>
+      <motion.li className="flex-1 text-center text-lg p-2" initial={{ opacity: 0, transition: { delay: 0.5 } }}
+        animate={{ opacity: 1, transition: { delay: 0.5 } }}
+        exit={{ opacity: 0, transition: { delay: 0 } }}
+        layoutId={section}
+        key={section}>
+        <motion.button onClick={() => handleSection(section)}>
+          {section}
+        </motion.button>
+      </motion.li>
     )
   })
 
-  const backgrounds = sectionsToRender.map((section) => {
-
-    if (section == currentSection) {
-      return (
-        <div key={section} className={`h-1.5 ${bgDarkColorsVariants[index]}`}>
-        </div>
-      )
+  // Framer motion variants
+  const lightVariants = {
+    newColor: {
+      backgroundColor: bgLightColorsValues[index],
+      transition: {
+        duration: 0.5
+      }
     }
+  }
 
+  // Bottom bar backgrounds
+  const backgrounds = sectionsToRender.map((section) => {
+    const isCurrentSection = section === currentSection;
     return (
-      <div key={section} className={`h-1.5 ${bgLightColorsVariants[index]}`}>
+      <div key={section} className="flex-1 justify-center h-1.5">
+        <motion.div className={`h-1.5 ${bgLightColorsVariants[index]}`} variants={lightVariants} animate={"newColor"}>
+          <AnimatePresence mode="sync">
+            {isCurrentSection && <motion.div
+              key={"current-section"}
+              layoutId="current-section"
+              className={`h-1.5 ${bgDarkColorsVariants[index]} relative z-1`}
+            />}
+          </AnimatePresence>
+        </motion.div>
       </div>
     )
   })
 
   return (
-    <div>
-      <div className={`grid gap-2 ${gridColumnsVariants[sectionsToRender.length]}`}>
-        {sectionsReturn}
-      </div>
-      <div className={`grid ${gridColumnsVariants[sectionsToRender.length]}`}>
+    <div className="w-88 md:w-120">
+      {/* Header Sections */}
+      <nav>
+        <ul className="flex flex-row justify-center">
+          <AnimatePresence mode="popLayout" initial={false}>
+            {sectionsReturn}
+          </AnimatePresence>
+        </ul>
+      </nav>
+      {/* Bottom Bar Header */}
+      <div className="flex flex-row">
         {backgrounds}
       </div>
     </div>

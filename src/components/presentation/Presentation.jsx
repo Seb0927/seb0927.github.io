@@ -1,18 +1,60 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import ProgrammingIcons from "./ProgrammingIcons.jsx";
 import meImage from '../../assets/images/me.jpg';
 
-function Presentation() {
+function Presentation({ hasRendered, setHasRendered, sectionIndex }) {
+
+  useEffect(() => {
+    const updatedRenderedState = [...hasRendered];
+    updatedRenderedState[sectionIndex] = true;
+    setHasRendered(updatedRenderedState);
+  }, [])
+
+  // Framer variables
+  let renderVariants = null;
+  if (!hasRendered[sectionIndex]) {
+    renderVariants = {
+      hiddenUp: { y: 10, opacity: 0 },
+      visible: (i) => {
+        const delay = 0 + i * 0.20;
+        return {
+          y: 0,
+          opacity: 1,
+          transition: {
+            delay: delay,
+          }
+        }
+      },
+    }
+    
+  } else {
+    renderVariants = {
+      hiddenUp: { opacity: 0 },
+      visible: {
+        opacity: 1
+      }
+    }
+  }
 
   return (
     <>
       {/* Content */}
-      <motion.div className="md:grid md:grid-cols-11 md:gap-2 md:h-5/6">
-
+      <motion.div className="md:grid md:grid-cols-11 md:gap-2 md:h-5/6"
+        key={"presentation"}>
         {/* Presentation */}
-        <motion.div className="md:col-span-5 content-center">
-          <h1 className="mb-10 text-5xl font-semibold">I’m Sebastian Idrobo</h1>
-          <motion.div className="overflow-auto md:max-h-80">
+        <div className="md:col-span-5 content-center">
+          <motion.h1 className="mb-10 text-5xl font-semibold"
+            variants={renderVariants}
+            initial="hiddenUp"
+            animate="visible"
+            custom={2}
+          >I’m Sebastian Idrobo</motion.h1>
+          <motion.div className="overflow-auto md:max-h-80"
+            variants={renderVariants}
+            initial="hiddenUp"
+            animate="visible"
+            custom={3}>
             <p className="text-lg">I am a passionate Systems Engineer with a mindset geared towards challenges and endeavors, always seeking out new opportunities to push the boundaries of what is possible and deliver impactful results. My career is orientated to:</p>
             <br></br>
             <ul className="list-disc list-inside text-lg">
@@ -21,24 +63,32 @@ function Presentation() {
               <li>Data Science.</li>
             </ul>
           </motion.div>
-        </motion.div>
+        </div>
 
         {/* Space */}
-        <motion.div></motion.div>
+        <div></div>
 
         {/* Image */}
-        <motion.div className="flex justify-center my-6 md:col-span-5">
+        <motion.div className="flex justify-center my-6 md:col-span-5"
+          variants={renderVariants}
+          initial="hiddenUp"
+          animate="visible"
+          custom={4}>
           <img src={meImage} className="rounded-4xl max-h-88 my-auto"></img>
         </motion.div>
 
       </motion.div>
 
       {/* Programming Icons */}
-      <motion.div className="content-start py-6 md:py-0 md:h-1/6">
+      <motion.div className="content-start py-6 md:py-0 md:h-1/6"
+        variants={renderVariants}
+        initial="hiddenUp"
+        animate="visible"
+        custom={5}>
         <ProgrammingIcons></ProgrammingIcons>
       </motion.div>
     </>
   )
 }
 
-export default Presentation
+export default Presentation;
