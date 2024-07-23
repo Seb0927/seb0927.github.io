@@ -54,21 +54,21 @@ const Background = ({ children, sections, currentSection, setCurrentSection }) =
 
   return (
     <>
-      {/* Blob */}
-      <motion.div className="fixed overflow-hidden left-0 bottom-0 translate-y-1/2 -translate-x-1/2" >
-        <Blob sections={sections} currentSection={currentSection} handleSection={handleSection}></Blob>
-      </motion.div>
-
-      {/* Blob */}
-      <motion.div className="fixed overflow-hidden right-0 top-0 -translate-y-1/2 translate-x-1/2">
-        <Blob sections={sections} currentSection={currentSection} handleSection={handleSection}></Blob>
-      </motion.div>
-
       {/* Background */}
       <motion.div className={`overflow-auto ${bgLightestColorsVariants[indexSection]} md:h-screen md:w-screen md:overflow-hidden md:grid md:grid-cols-13 md:gap-2 md:px-20`}
         variants={lightestVariants}
         layoutId="current-background"
         animate="newColor">
+
+          {/* Blob */}
+          <motion.div className="fixed z-10 overflow-hidden left-0 bottom-0 translate-y-1/2 -translate-x-1/2 sm:z-20" >
+            <Blob sections={sections} currentSection={currentSection} handleSection={handleSection}></Blob>
+          </motion.div>
+
+          {/* Blob */}
+          <motion.div className="fixed z-10 overflow-hidden right-0 top-0 -translate-y-1/2 translate-x-1/2 sm:z-20">
+            <Blob sections={sections} currentSection={currentSection} handleSection={handleSection}></Blob>
+          </motion.div>
 
         {/* Left Arrow */}
         <div className="hidden md:flex md:justify-start md:items-center">
@@ -90,7 +90,7 @@ const Background = ({ children, sections, currentSection, setCurrentSection }) =
         {/* Middle Content*/}
         <div className="md:col-span-11">
           {/* Header */}
-          <motion.div className="text-black w-full pt-12 pb-6 items flex justify-center h-1/6"
+          <motion.div className="relative z-20 text-black w-full pt-12 pb-6 items flex justify-center md:h-1/6 sm:z-10"
             variants={renderVariants}
             initial={"hiddenUp"}
             animate={"visible"}

@@ -27,7 +27,7 @@ export default function App() {
   ];
 
   return (
-    <Background 
+    <Background
     sections={sections} 
     currentSection={currentSection} 
     setCurrentSection={setCurrentSection}>
