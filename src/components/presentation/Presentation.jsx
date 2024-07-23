@@ -1,7 +1,7 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import ProgrammingIcons from "./ProgrammingIcons.jsx";
 import meImage from '../../assets/images/me.jpg';
-import { useEffect } from "react";
 
 function Presentation({ hasRendered, setHasRendered, sectionIndex }) {
 
@@ -41,7 +41,6 @@ function Presentation({ hasRendered, setHasRendered, sectionIndex }) {
     <>
       {/* Content */}
       <motion.div className="md:grid md:grid-cols-11 md:gap-2 md:h-5/6"
-        exit={{ opacity: 0 }}
         key={"presentation"}>
         {/* Presentation */}
         <div className="md:col-span-5 content-center">
