@@ -6,10 +6,8 @@ import { bgLightestColorsVariants, bgLightestColorsValues, bgDarkColorsValues } 
 import ChevronLeft from '../../assets/vectors/chevron-left.svg?react';
 import ChevronRight from '../../assets/vectors/chevron-right.svg?react';
 
-const Background = ({ children }) => {
+const Background = ({ children, sections, currentSection, setCurrentSection }) => {
   // Component variables
-  const sections = ['Home', 'Projects', 'Experience', 'Contact']
-  const [currentSection, setCurrentSection] = useState(sections[0])
   const handleSection = (section) => {
     let indexSection = sections.indexOf(section)
     setCurrentSection(sections[indexSection])
@@ -102,7 +100,7 @@ const Background = ({ children }) => {
 
           {/* Content */}
           <div className="px-16 py-4 md:h-5/6 md:content-center md:col-span-11 md:px-0 md:py-0">
-            {children[indexSection]}
+            {children}
           </div>
         </div>
 
