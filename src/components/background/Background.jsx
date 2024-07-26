@@ -9,8 +9,10 @@ import ChevronRight from '../../assets/vectors/chevron-right.svg?react';
 const Background = ({ children, sections, currentSection, setCurrentSection }) => {
   // Component variables
   const handleSection = (section) => {
-    let indexSection = sections.indexOf(section)
-    setCurrentSection(sections[indexSection])
+    if (section !== undefined){
+      let indexSection = sections.indexOf(section)
+      setCurrentSection(sections[indexSection])
+    }
   }
   let indexSection = sections.indexOf(currentSection)
 
@@ -51,6 +53,12 @@ const Background = ({ children, sections, currentSection, setCurrentSection }) =
       }
     }
   }
+
+  //Framer motion Drag variables
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset, velocity) => {
+    return Math.abs(offset) * velocity;
+  };
 
   return (
     <>
@@ -99,9 +107,19 @@ const Background = ({ children, sections, currentSection, setCurrentSection }) =
           </motion.div>
 
           {/* Content */}
-          <div className="px-16 py-4 md:h-5/6 md:content-center md:col-span-11 md:px-0 md:py-0">
+          <motion.div className="px-16 py-4 md:h-5/6 md:content-center md:col-span-11 md:px-0 md:py-0" 
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={false}
+          onDragEnd={(e, { offset, velocity }) => {
+            const swipe = swipePower(offset.x, velocity.x);
+            if (swipe < -swipeConfidenceThreshold) {
+              handleSection(sections[sections.indexOf(currentSection) + 1])
+            } else if (swipe > swipeConfidenceThreshold) {
+              handleSection(sections[sections.indexOf(currentSection) - 1])
+            }}}>
             {children}
-          </div>
+          </motion.div>
         </div>
 
         {/* Right Arrow */}
