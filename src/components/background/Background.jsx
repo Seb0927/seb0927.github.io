@@ -98,7 +98,7 @@ const Background = ({ children, sections, currentSection, setCurrentSection }) =
         {/* Middle Content*/}
         <div className="md:col-span-11">
           {/* Header */}
-          <motion.div className="relative z-20 text-black w-full flex justify-center items-center pt-6 md:h-1/6 sm:z-10"
+          <motion.div className="relative z-20 py-6 text-black w-full flex justify-center items-center md:pt-6 md:h-1/6 sm:z-10"
             variants={renderVariants}
             initial={"hiddenUp"}
             animate={"visible"}
