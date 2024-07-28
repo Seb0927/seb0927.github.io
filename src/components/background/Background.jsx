@@ -107,7 +107,7 @@ const Background = ({ children, sections, currentSection, setCurrentSection }) =
           </motion.div>
 
           {/* Content */}
-          <motion.div className="px-16 py-4 md:h-5/6 md:content-center md:col-span-11 md:px-0 md:py-0" 
+          <motion.div className="relative px-16 py-4 md:h-5/6 md:col-span-11 md:px-0 md:py-0"
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={false}

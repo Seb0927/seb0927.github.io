@@ -38,7 +38,7 @@ function Presentation({ hasRendered, setHasRendered, sectionIndex }) {
   }
 
   return (
-    <>
+    <div className="md:absolute md:top-0 md:bottom-0 md:content-start">
       {/* Content */}
       <motion.div className="md:grid md:grid-cols-11 md:gap-2 md:h-5/6"
         key={"presentation"}>
@@ -87,7 +87,7 @@ function Presentation({ hasRendered, setHasRendered, sectionIndex }) {
         custom={5}>
         <ProgrammingIcons></ProgrammingIcons>
       </motion.div>
-    </>
+    </div>
   )
 }
 
