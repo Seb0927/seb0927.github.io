@@ -9,22 +9,22 @@ function Form() {
     <form className="w-full" action={formActionUrl} method="POST">
       <div className="flex flex-wrap lg:-ml-3 mb-6">
         <div className="w-full lg:w-1/4 lg:px-3 lg:mb-0">
-          <label className="block text-sm italic mb-1" for="name">
+          <label className="block text-sm italic mb-1" htmlFor="name">
             Name:
           </label>
-          <input class="appearance-none block w-full bg-[#9ED5AD] text-black rounded py-3 px-4 mb-3 focus:outline-none focus:bg-[#AFEDC2]" id="name" type="text" name="name"/>
+          <input className="appearance-none block w-full bg-[#9ED5AD] text-black rounded py-3 px-4 mb-3 focus:outline-none focus:bg-[#AFEDC2]" id="name" type="text" name="name"/>
         </div>
-        <div class="w-full lg:w-3/4 lg:px-3 lg:mb-3">
-          <label class="block text-sm italic mb-1" for="email">
+        <div className="w-full lg:w-3/4 lg:px-3 lg:mb-3">
+          <label className="block text-sm italic mb-1" htmlFor="email">
             Email:
           </label>
-          <input class="appearance-none block w-full bg-[#9ED5AD] text-black rounded py-3 px-4 mb-3 focus:outline-none focus:bg-[#AFEDC2]" id="email" type="text" name="email"/>
+          <input className="appearance-none block w-full bg-[#9ED5AD] text-black rounded py-3 px-4 mb-3 focus:outline-none focus:bg-[#AFEDC2]" id="email" type="text" name="email"/>
         </div>
-        <div class="w-full lg:px-3">
-          <label class="block text-sm italic mb-1" for="message">
+        <div className="w-full lg:px-3">
+          <label className="block text-sm italic mb-1" htmlFor="message">
             Message:
           </label>
-          <textarea class="h-36 min-h-12 max-h-56 appearance-none block w-full bg-[#9ED5AD] text-black rounded py-3 px-4 mb-6 focus:outline-none focus:bg-[#AFEDC2]" id="message" type="text" name="message"/>
+          <textarea className="h-36 min-h-12 max-h-56 appearance-none block w-full bg-[#9ED5AD] text-black rounded py-3 px-4 mb-6 focus:outline-none focus:bg-[#AFEDC2]" id="message" type="text" name="message"/>
         </div>
         <div className="w-full flex justify-center mx-3">
           <button type="submit"
