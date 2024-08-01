@@ -5,5 +5,5 @@ import svgr from 'vite-plugin-svgr'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), svgr()],
-  base: "https://seb0927.github.io/portfolio/",
+  base: "https://seb0927.github.io/",
 })
