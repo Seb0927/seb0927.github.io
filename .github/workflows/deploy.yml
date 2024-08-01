@@ -2,7 +2,6 @@ on:
   push:
     branches:
       - "main"
-      - "ci/cd"
 
 permissions:
   contents: read
@@ -13,7 +12,7 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
-      
+
     - name: Deploy to Github Pages
       id: build-publish
       uses: bitovi/github-actions-react-to-github-pages@v1.2.4
