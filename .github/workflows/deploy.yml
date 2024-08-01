@@ -12,7 +12,11 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
-    - id: build-publish
+
+    - name: Deploy to Github Pages
+      id: build-publish
       uses: bitovi/github-actions-react-to-github-pages@v1.2.4
       with:
         path: dist
+      env:
+        VITE_FORM_EMAIL: ${{ secrets.VITE_FORM_EMAIL }}
