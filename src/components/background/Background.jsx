@@ -63,7 +63,7 @@ const Background = ({ children, sections, currentSection, setCurrentSection }) =
   return (
     <>
       {/* Background */}
-      <motion.div className={`${bgLightestColorsVariants[indexSection]} md:h-screen md:w-screen md:overflow-hidden md:grid md:grid-cols-13 md:gap-2 md:px-20`}
+      <motion.div className={`${bgLightestColorsVariants[indexSection]} min-h-screen md:h-screen md:w-screen md:overflow-hidden md:grid md:grid-cols-13 md:gap-2 md:px-20`}
         variants={lightestVariants}
         layoutId="current-background"
         animate="newColor">
@@ -98,7 +98,7 @@ const Background = ({ children, sections, currentSection, setCurrentSection }) =
         {/* Middle Content*/}
         <div className="md:col-span-11">
           {/* Header */}
-          <motion.div className="relative z-20 py-6 text-black w-full flex justify-center items-center md:pt-6 md:h-1/6 sm:z-10"
+          <motion.div className="relative z-20 py-6 h-auto text-black w-full flex justify-center items-center md:pt-6 md:h-1/6 sm:z-10"
             variants={renderVariants}
             initial={"hiddenUp"}
             animate={"visible"}
