@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Header from './Header.jsx';
 import Blob from "./Blob.jsx";
@@ -9,7 +8,7 @@ import ChevronRight from '../../assets/vectors/chevron-right.svg?react';
 const Background = ({ children, sections, currentSection, setCurrentSection }) => {
   // Component variables
   const handleSection = (section) => {
-    if (section !== undefined){
+    if (section !== undefined) {
       let indexSection = sections.indexOf(section)
       setCurrentSection(sections[indexSection])
     }
@@ -63,35 +62,35 @@ const Background = ({ children, sections, currentSection, setCurrentSection }) =
   return (
     <>
       {/* Background */}
-      <motion.div className={`${bgLightestColorsVariants[indexSection]} min-h-screen md:h-screen md:w-screen md:overflow-hidden md:grid md:grid-cols-13 md:gap-2 md:px-20`}
+      <motion.div className={`${bgLightestColorsVariants[indexSection]} md:h-screen md:w-screen md:overflow-hidden md:grid md:grid-cols-13 md:gap-2 md:px-20`}
         variants={lightestVariants}
         layoutId="current-background"
         animate="newColor">
 
-          {/* Blob */}
-          <motion.div className="fixed z-10 overflow-hidden left-0 bottom-0 translate-y-1/2 -translate-x-1/2 sm:z-20" >
-            <Blob sections={sections} currentSection={currentSection} handleSection={handleSection}></Blob>
-          </motion.div>
+        {/* Blob */}
+        <motion.div className="fixed z-10 overflow-hidden left-0 bottom-0 translate-y-1/2 -translate-x-1/2 sm:z-20" >
+          <Blob sections={sections} currentSection={currentSection} handleSection={handleSection}></Blob>
+        </motion.div>
 
-          {/* Blob */}
-          <motion.div className="fixed z-10 overflow-hidden right-0 top-0 -translate-y-1/2 translate-x-1/2 sm:z-20">
-            <Blob sections={sections} currentSection={currentSection} handleSection={handleSection}></Blob>
-          </motion.div>
+        {/* Blob */}
+        <motion.div className="fixed z-10 overflow-hidden right-0 top-0 -translate-y-1/2 translate-x-1/2 sm:z-20">
+          <Blob sections={sections} currentSection={currentSection} handleSection={handleSection}></Blob>
+        </motion.div>
 
         {/* Left Arrow */}
         <div className="hidden md:flex md:justify-start md:items-center">
           <AnimatePresence>
-            {indexSection > 0 && 
-              <motion.div 
-              variants={{ ...renderVariants, ...darkVariants }}
-              initial={"hiddenUp"}
-              animate={["visible", "newColor"]}
-              exit={["oldColor", "hiddenDown"]}
-              custom={1}>
-              <button onClick={() => handleSection(sections[sections.indexOf(currentSection) - 1])}>
-                <ChevronLeft className={`md:h-16 md:w-16`} />
-              </button>
-            </motion.div>}
+            {indexSection > 0 &&
+              <motion.div
+                variants={{ ...renderVariants, ...darkVariants }}
+                initial={"hiddenUp"}
+                animate={["visible", "newColor"]}
+                exit={["oldColor", "hiddenDown"]}
+                custom={1}>
+                <button onClick={() => handleSection(sections[sections.indexOf(currentSection) - 1])}>
+                  <ChevronLeft className={`md:h-16 md:w-16`} />
+                </button>
+              </motion.div>}
           </AnimatePresence>
         </div>
 
@@ -107,17 +106,18 @@ const Background = ({ children, sections, currentSection, setCurrentSection }) =
           </motion.div>
 
           {/* Content */}
-          <motion.div className="relative px-16 py-4 md:h-5/6 md:col-span-11 md:px-0 md:py-0"
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={false}
-          onDragEnd={(e, { offset, velocity }) => {
-            const swipe = swipePower(offset.x, velocity.x);
-            if (swipe < -swipeConfidenceThreshold) {
-              handleSection(sections[sections.indexOf(currentSection) + 1])
-            } else if (swipe > swipeConfidenceThreshold) {
-              handleSection(sections[sections.indexOf(currentSection) - 1])
-            }}}>
+          <motion.div className={`relative px-16 py-4 md:content-start md:h-5/6 md:col-span-11 md:px-0 md:py-0`}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={false}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipe = swipePower(offset.x, velocity.x);
+              if (swipe < -swipeConfidenceThreshold) {
+                handleSection(sections[sections.indexOf(currentSection) + 1])
+              } else if (swipe > swipeConfidenceThreshold) {
+                handleSection(sections[sections.indexOf(currentSection) - 1])
+              }
+            }}>
             {children}
           </motion.div>
         </div>

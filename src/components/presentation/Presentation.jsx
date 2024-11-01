@@ -38,9 +38,11 @@ function Presentation({ hasRendered, setHasRendered, sectionIndex }) {
   }
 
   return (
-    <div className="md:absolute md:top-0 md:bottom-0 md:content-start">
+    <>  
+      {/* TO-DO: You should search something better for this... */}
+      <div className="md:h-16" />
       {/* Content */}
-      <motion.div className="md:overflow-y-auto md:grid md:grid-cols-11 md:gap-2 md:h-5/6"
+      <motion.div className="md:grid md:grid-cols-11 md:gap-2"
         key={"presentation"}>
         {/* Presentation */}
         <div className="md:col-span-5 content-center">
@@ -80,14 +82,14 @@ function Presentation({ hasRendered, setHasRendered, sectionIndex }) {
       </motion.div>
 
       {/* Programming Icons */}
-      <motion.div className="content-start py-6 md:py-0 md:h-1/6"
+      <motion.div className="content-start py-6 md:pt-12"
         variants={renderVariants}
         initial="hiddenUp"
         animate="visible"
         custom={5}>
         <ProgrammingIcons></ProgrammingIcons>
       </motion.div>
-    </div>
+    </>
   )
 }
 
