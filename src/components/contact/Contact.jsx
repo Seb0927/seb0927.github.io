@@ -43,7 +43,7 @@ function Contact({ hasRendered, setHasRendered, sectionIndex }) {
   }
 
   return (
-    <div className="md:overflow-y-auto md:absolute md:top-0 md:bottom-0 md:content-start">
+    <>
       <div className="md:h-full">
         <h1 className="mb-8 col-span-2 text-5xl font-semibold text-center md:py-8">More about me?</h1>
         <div className="md:flex md:flex-row md:gap-12 lg:gap-24">
@@ -60,7 +60,7 @@ function Contact({ hasRendered, setHasRendered, sectionIndex }) {
           </section>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 
