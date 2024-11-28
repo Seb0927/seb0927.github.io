@@ -34,6 +34,7 @@ export default function App() {
       {/* Sections */}
       <AnimatePresence mode="wait">
         <motion.div
+          className="md:h-full"
           key={currentSection}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
