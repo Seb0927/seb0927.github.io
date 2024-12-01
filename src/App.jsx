@@ -8,33 +8,33 @@ export default function App() {
   const [hasRendered, setHasRendered] = useState(sections.map(() => false));
 
   const sectionElements = [
-    <Presentation key={0} 
-    hasRendered={hasRendered} 
-    setHasRendered={setHasRendered} 
-    sectionIndex={0}/>,
-    <Projects key={1} 
-    hasRendered={hasRendered} 
-    setHasRendered={setHasRendered} 
-    sectionIndex={1}/>,
-    <Experience key={2} 
-    hasRendered={hasRendered} 
-    setHasRendered={setHasRendered} 
-    sectionIndex={2}/>,
-    <Contact key={3} 
-    hasRendered={hasRendered} 
-    setHasRendered={setHasRendered} 
-    sectionIndex={3}/>,
+    <Presentation key={0}
+      hasRendered={hasRendered}
+      setHasRendered={setHasRendered}
+      sectionIndex={0} />,
+    <Projects key={1}
+      hasRendered={hasRendered}
+      setHasRendered={setHasRendered}
+      sectionIndex={1} />,
+    <Experience key={2}
+      hasRendered={hasRendered}
+      setHasRendered={setHasRendered}
+      sectionIndex={2} />,
+    <Contact key={3}
+      hasRendered={hasRendered}
+      setHasRendered={setHasRendered}
+      sectionIndex={3} />,
   ];
 
   return (
     <Background
-    sections={sections} 
-    currentSection={currentSection} 
-    setCurrentSection={setCurrentSection}>
+      sections={sections}
+      currentSection={currentSection}
+      setCurrentSection={setCurrentSection}>
       {/* Sections */}
       <AnimatePresence mode="wait">
         <motion.div
-          className="md:h-full"
+          className={`md:h-full md:w-full md:flex md:items-center`}
           key={currentSection}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

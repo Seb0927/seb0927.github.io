@@ -44,7 +44,7 @@ function Contact({ hasRendered, setHasRendered, sectionIndex }) {
 
   return (
     <>
-      <div className="md:h-full">
+      <div className="md:h-full md:w-full">
         <h1 className="mb-8 col-span-2 text-5xl font-semibold text-center md:py-8">More about me?</h1>
         <div className="md:flex md:flex-row md:gap-12 lg:gap-24">
           <section className="flex-1">
