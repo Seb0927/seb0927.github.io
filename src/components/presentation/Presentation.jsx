@@ -27,7 +27,7 @@ function Presentation({ hasRendered, setHasRendered, sectionIndex }) {
         }
       },
     }
-    
+
   } else {
     renderVariants = {
       hiddenUp: { opacity: 0 },
@@ -38,9 +38,7 @@ function Presentation({ hasRendered, setHasRendered, sectionIndex }) {
   }
 
   return (
-    <>  
-      {/* TO-DO: You should search something better for this... */}
-      <div className="md:h-16" />
+    <div>
       {/* Content */}
       <motion.div className="md:grid md:grid-cols-11 md:gap-2"
         key={"presentation"}>
@@ -52,7 +50,7 @@ function Presentation({ hasRendered, setHasRendered, sectionIndex }) {
             animate="visible"
             custom={2}
           >I’m Sebastian Idrobo</motion.h1>
-          <motion.div className=""
+          <motion.div className="md:overflow-y-auto md:max-h-80"
             variants={renderVariants}
             initial="hiddenUp"
             animate="visible"
@@ -89,7 +87,7 @@ function Presentation({ hasRendered, setHasRendered, sectionIndex }) {
         custom={5}>
         <ProgrammingIcons></ProgrammingIcons>
       </motion.div>
-    </>
+    </div>
   )
 }
 

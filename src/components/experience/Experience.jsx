@@ -36,7 +36,7 @@ function Experience({ hasRendered, setHasRendered, sectionIndex }) {
   }
 
   return (
-    <div className="md:px-16 md:py-4 md:flex md:justify-center md:h-5/6">
+    <div className="md:px-16 md:py-4 md:flex md:justify-center md:h-full md:w-full">
       <section>
         <motion.h1 className="text-8xl text-center font-bold mb-4"
         variants={renderVariants}
