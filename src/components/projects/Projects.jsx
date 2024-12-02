@@ -40,7 +40,7 @@ function Projects({ hasRendered, setHasRendered, sectionIndex }) {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:pt-6 lg:gap-16 md:auto-rows-fr md:grid-cols-2 md:gap-4 md:h-full md:w-full md:px-16 md:pb-16 md:items-center">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:pt-6 lg:gap-8 md:auto-rows-fr md:grid-cols-2 md:gap-4 md:h-full md:w-full md:px-16 md:pb-16 md:items-center">
         <Project 
         title={"QuestAI"} 
         description={"Website where you can record your interviews, save them to text and have assistance with the help of AI"} 
@@ -58,15 +58,7 @@ function Projects({ hasRendered, setHasRendered, sectionIndex }) {
         <Project title={"WIP"}
         description={"I hope to have more projects to display here!"}
         img={wipImage}
-        link={""}/>
-        <Project title={"WIP"}
-        description={"I hope to have more projects to display here!"}
-        img={wipImage}
-        link={""}/>
-        <Project title={"WIP"}
-        description={"I hope to have more projects to display here!"}
-        img={wipImage}
-        link={""}/>
+        link={"https://seb0927.github.io/"}/>
     </div>
   )
 }

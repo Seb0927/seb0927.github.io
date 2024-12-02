@@ -10,7 +10,7 @@ function Project(props) {
 
   return (
     <motion.div
-      className="relative flex items-center md:h-full md:w-full rounded-3xl overflow-hidden bg-zinc-100 "
+      className="relative flex items-center h-full w-full rounded-3xl overflow-hidden bg-zinc-100 md:max-h-60"
       onHoverStart={handleHoverStart}
       onHoverEnd={handleHoverEnd}
       onTap={() => setIsHovered(!isHovered)}
