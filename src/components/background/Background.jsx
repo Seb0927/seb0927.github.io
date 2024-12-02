@@ -62,7 +62,7 @@ const Background = ({ children, sections, currentSection, setCurrentSection }) =
   return (
     <>
       {/* Background */}
-      <motion.div className={`${bgLightestColorsVariants[indexSection]} md:h-screen md:w-screen md:overflow-hidden md:grid md:grid-cols-13 md:gap-2 md:px-20`}
+      <motion.div className={`min-h-screen ${bgLightestColorsVariants[indexSection]} md:h-screen md:w-screen md:overflow-hidden md:grid md:grid-cols-13 md:gap-2 md:px-20`}
         variants={lightestVariants}
         layoutId="current-background"
         animate="newColor">
