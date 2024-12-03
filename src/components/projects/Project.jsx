@@ -15,9 +15,12 @@ function Project(props) {
       onHoverEnd={handleHoverEnd}
       onTap={() => setIsHovered(!isHovered)}
     >
-      <div className='absolute inset-0'>
-          <img src={img} alt="Project" className="w-full h-full object-cover opacity-10" />
-        </div>
+      <motion.div
+        className='absolute inset-0'
+        initial={{ opacity: 0.9 }}
+        animate={{ opacity: isHovered ? 0.1 : 0.9}}>
+        <img src={img} alt="Project" className="w-full h-full object-cover" />
+      </motion.div>
 
       <motion.div
         className="p-4 w-full"
@@ -25,7 +28,7 @@ function Project(props) {
         animate={{ scale: isHovered ? 1 : 0 }}
         transition={{ type: "spring", stiffness: 200, damping: 30 }}
       >
-        
+
 
         <h2 className="text-center text-2xl font-bold mb-2">{title}</h2>
         <p className="text-center mb-4">
