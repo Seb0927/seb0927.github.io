@@ -1,53 +1,46 @@
-# Pesonal Portfolio 🎨
+# Astro Starter Kit: Basics
 
-<div align="center">
-  <img src="https://github.com/Seb0927/seb0927.github.io/blob/develop/files/recording.gif?raw=true" alt="Recording of Portfolio working on a website">
-</div>
+```sh
+npm create astro@latest -- --template basics
+```
 
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-## About the Project 📖
+## 🚀 Project Structure
 
-This is my personal portfolio website where I showcase my projects, experience, and skills. It serves as a platform to present my work and connect with potential employers or collaborators. Feel free to explore it!
+Inside of your Astro project, you'll see the following folders and files:
 
-## Features ✨
+```text
+/
+├── public/
+│   └── favicon.svg
+├── src
+│   ├── assets
+│   │   └── astro.svg
+│   ├── components
+│   │   └── Welcome.astro
+│   ├── layouts
+│   │   └── Layout.astro
+│   └── pages
+│       └── index.astro
+└── package.json
+```
 
-- **Responsive Design:** The website is fully responsive and works on all devices.
-- **Interactive Animations:** Utilizes Framer Motion for smooth animations.
-- **Project Showcase:** Displays my projects with descriptions and links to their repositories.
-- **Experience Section:** Highlights my professional experience.
-- **Contact Form:** Allows visitors to reach out to me directly through the website.
+To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
 
-## Instalation 🛠️
+## 🧞 Commands
 
-To run this project locally, follow these steps:
+All commands are run from the root of the project, from a terminal:
 
-1. **Clone the repository:**
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-    ```bash
-    git clone https://github.com/Seb0927/personal-portfolio.git
-    cd personal-portfolio
-    ```
+## 👀 Want to learn more?
 
-2. **Install dependencies:**
-
-    ```bash
-    npm install
-    ```
-
-3. **Run the development server:**
-
-    ```bash
-    npm run dev
-    ```
-
-## Usage 🚀
-
-After installing the project, you can navigate to `http://localhost:3000` in your browser to view the website. You can explore different sections such as About Me, Projects, Experience, and Contact. In this project I have tried to make use of components in the best possible way so they can be understood in the easily.
-
-## Technologies used 🧰
-
-- React: JavaScript library for building user interfaces.
-- Framer Motion: Library for animations.
-- Tailwind CSS: Utility-first CSS framework.
-- Vite: Next-generation frontend tooling.
-- GitHub Pages: Hosting the website.
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
